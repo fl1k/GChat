@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{8a8bdeac-9ab5-40a7-8c88-0716254d0fc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server">
+      <UniqueIdentifier>{26bb9684-e4e2-44aa-9da5-bfe7a4d9a995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server\Client">
+      <UniqueIdentifier>{55c537f3-3f07-4ada-94df-aaa1b2bda6f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server\Command">
+      <UniqueIdentifier>{e987e43d-666b-43c3-bd89-1af986a49c92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server\Database">
+      <UniqueIdentifier>{9873902b-6ef6-4eab-b828-eb55895043ce}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Misc\Logger.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\LogReason.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Server\DisconnectReason.h">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="Server\Server.h">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="Server\Client\Client.h">
+      <Filter>Server\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Server\Client\ClientFlag.h">
+      <Filter>Server\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Server\Command\Command.h">
+      <Filter>Server\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Server\Database\Database.h">
+      <Filter>Server\Database</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Misc\Logger.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Server\Server.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Server\Client\Client.cpp">
+      <Filter>Server\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Server\Command\Command.cpp">
+      <Filter>Server\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Server\Database\Database.cpp">
+      <Filter>Server\Database</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

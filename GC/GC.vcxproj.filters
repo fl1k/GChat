@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Packets">
+      <UniqueIdentifier>{7077bb12-c6fd-4195-9e79-a197d982deaf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Packets\PacketType.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Packets\RequestPacket.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Packets\ChatMessagePacket.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Packets\ServerUpdatePacket.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Packets\RequestPacket.cpp">
+      <Filter>Packets</Filter>
+    </ClCompile>
+    <ClCompile Include="Packets\ChatMessagePacket.cpp">
+      <Filter>Packets</Filter>
+    </ClCompile>
+    <ClCompile Include="Packets\ServerUpdatePacket.cpp">
+      <Filter>Packets</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

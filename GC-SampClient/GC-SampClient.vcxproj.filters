@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Hook\Hook.cpp">
+      <Filter>Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooks\Hooks.cpp">
+      <Filter>Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\SAMP.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooks\SendMessage_Hooked.cpp">
+      <Filter>Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\Client.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\Config.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Hook">
+      <UniqueIdentifier>{97f03ef8-c413-4765-909f-2273976b5fc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hooks">
+      <UniqueIdentifier>{1a530d2d-a26a-437d-985e-f7bf1701b8cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK">
+      <UniqueIdentifier>{9d56c5af-87f7-48d6-9ca0-6e5d8b2a77f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client">
+      <UniqueIdentifier>{4f11dd88-bb8a-448c-adba-258111c0fdd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{96fc4920-114c-42e0-b712-f4bc5dab3373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{666df548-1434-4637-a8ff-28848c76075a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Hook\Hook.h">
+      <Filter>Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooks\Hooks.h">
+      <Filter>Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK\SAMP.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Client.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\debug.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Config\simpleini.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Config\Config.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

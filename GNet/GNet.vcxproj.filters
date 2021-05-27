@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{3e6f5c77-7fe6-40a0-a91e-b5bc5b574d05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\IPEndpoint">
+      <UniqueIdentifier>{bfe4fde6-2701-4024-bd7d-591be1f907db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Socket">
+      <UniqueIdentifier>{31a3b28d-d4eb-4011-b0a4-5aceacb48b10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Packet">
+      <UniqueIdentifier>{9d5ef010-98a2-4e87-9887-c9ed69d11dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Connection">
+      <UniqueIdentifier>{8792fc03-60e0-4df5-aee9-95d81ff92ba1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\Network.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\IPEndpoint\IPEndpoint.cpp">
+      <Filter>Core\IPEndpoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\IPEndpoint\IPAddress.cpp">
+      <Filter>Core\IPEndpoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\IPEndpoint\IPv4Address.cpp">
+      <Filter>Core\IPEndpoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Socket\Socket.cpp">
+      <Filter>Core\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Socket\TCPSocket.cpp">
+      <Filter>Core\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\IPEndpoint\IPv6Address.cpp">
+      <Filter>Core\IPEndpoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Packet\Packet.cpp">
+      <Filter>Core\Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Connection\TCPConnection.cpp">
+      <Filter>Core\Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Packet\PacketHandler.cpp">
+      <Filter>Core\Packet</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Network.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IPEndpoint\IPEndpoint.h">
+      <Filter>Core\IPEndpoint</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IPEndpoint\IPAddress.h">
+      <Filter>Core\IPEndpoint</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IPEndpoint\IPVersion.h">
+      <Filter>Core\IPEndpoint</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IPEndpoint\IPv4Address.h">
+      <Filter>Core\IPEndpoint</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Socket\Socket.h">
+      <Filter>Core\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Socket\TCPSocket.h">
+      <Filter>Core\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IPEndpoint\IPv6Address.h">
+      <Filter>Core\IPEndpoint</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Socket\SocketException.h">
+      <Filter>Core\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Packet\Packet.h">
+      <Filter>Core\Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Packet\PacketException.h">
+      <Filter>Core\Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Connection\TCPConnection.h">
+      <Filter>Core\Connection</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Packet\PacketHandler.h">
+      <Filter>Core\Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Packet\PacketHandlerTask.h">
+      <Filter>Core\Packet</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
