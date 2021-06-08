@@ -2,15 +2,19 @@
 #include <string.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <iomanip>
 #include <sstream>
 #include "../Hook/Pattern.h"
+#include "../Hook/Memory.h"
+
+#define CHECK_OFFSET(X, RET, TYPE) \
+	if (auto val = Memory::readMemory<TYPE>(X)) { if (*val == 0) return RET; } else return RET;
 
 bool SAMP::Initialize()
 {
 	SAMP::base = GetModuleHandleA("samp.dll");
 	return !!SAMP::base;
 }
-
 
 bool SAMP::AddMessageToChat(const char * message, size_t color)
 {
@@ -30,6 +34,8 @@ bool SAMP::AddMessageToChat(const char * message, size_t color)
 	if (ACMAddr) {
 		DWORD dwCallAddr = *(DWORD *)(ACMAddr + 0xD) + ACMAddr + 0xD + 0x4;
 		DWORD dwInfo = *(DWORD *)(ACMAddr + 0x2);
+
+		CHECK_OFFSET(dwInfo, false, DWORD)
 
 		__asm mov edx, dword ptr[dwInfo]
 		__asm mov eax, [edx]
