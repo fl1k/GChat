@@ -20,13 +20,19 @@ void Entry(HMODULE hModule)
 #endif	
 	if (Config::Load("gc_config.ini") == false)
 	{
-		Sleep(100);
-	}
-
-	if (Config::Load("gc_config.ini") == false)
-	{
+#ifdef DEBUG_MODE
+		OUTPUT_ERROR("Failed loading config.ini, check your GTA folder.", 0xC00000);
+		system("pause");
+		FREE_CONSOLE();
+#endif
 		SAMP::AddMessageToChat("[ERROR] Failed loading config.ini, check your GTA folder.", 0xC00000);
 		FreeLibraryAndExitThread(hModule, 0);
+		return;
+	}
+
+	while (SAMP::Initialize() != true)
+	{
+		Sleep(100);
 	}
 
 	if (GNet::Network::Initialize() == false)
@@ -39,6 +45,11 @@ void Entry(HMODULE hModule)
 
 	if (Hooks::Initialize() == false)
 	{
+#ifdef DEBUG_MODE
+		OUTPUT_ERROR("Failed placing hooks");
+		system("pause");
+		FREE_CONSOLE();
+#endif
 		SAMP::AddMessageToChat("[ERROR] GChat failed placing hooks.", 0xC00000);
 		GNet::Network::Shutdown();
 		FreeLibraryAndExitThread(hModule, 0);
@@ -62,14 +73,12 @@ void Entry(HMODULE hModule)
 			std::string loginRequest = "/login " + Config::username + " " + Config::password;
 			Client::Send(loginRequest.c_str());
 		}
-	}
-
-	/*
-	while (true)
-	{
+		while (true)
+		{
 			if (GetAsyncKeyState(VK_END))
 				break;
-		Sleep(150);
+			Sleep(150);
+		}
 	}
 
 	if (Client::connected == true)
@@ -79,7 +88,12 @@ void Entry(HMODULE hModule)
 	SAMP::AddMessageToChat("GChat shut down.");
 	Client::Shutdown();
 	Hooks::Shutdown();
-	GNet::Network::Shutdown();*/
+	GNet::Network::Shutdown();
+
+#ifdef DEBUG_MODE
+	FREE_CONSOLE();
+#endif
+	FreeLibraryAndExitThread(hModule, 0);
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
@@ -91,7 +105,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
 		HANDLE hThread = nullptr;
 		hThread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)Entry, hModule, 0, 0);
 		if (hThread)
-			CloseHandle(hThread); // Thread so it doesn't block the gamethread
+			CloseHandle(hThread);
 		break;
 	}
 	case DLL_THREAD_ATTACH:
