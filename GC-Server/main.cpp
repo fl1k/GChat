@@ -13,7 +13,7 @@ int main()
 		return 0;
 	}
 	Logger::Write("Successfully initialized network.");
-	Server server(9920, 500);
+	Server server(9920, 128);
 	if (server.Initialize() == false)
 	{
 		Logger::Write("Failed initializing server.", Logger::Reason::Error);
