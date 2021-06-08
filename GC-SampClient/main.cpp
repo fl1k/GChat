@@ -13,6 +13,10 @@ void Entry(HMODULE hModule)
 {
 #ifdef DEBUG_MODE
 	ALLOC_CONSOLE();
+
+	// check for game initialization first
+	while (!*reinterpret_cast<int *>(0xB6F5F0)) Sleep(50);
+
 #endif	
 	if (Config::Load("gc_config.ini") == false)
 	{
