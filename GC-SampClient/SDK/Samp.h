@@ -9,12 +9,12 @@ namespace SAMP
 	constexpr uintptr_t FN_ADD_TO_CHAT_OFFSET = 0x64010U;
 	constexpr uintptr_t ST_CHAT_INFO_OFFSET = 0x21A0E4U;
 
-	constexpr size_t ADD_TO_CHAT_CHUNK_SIZE = 86;
+	constexpr uint32_t ADD_TO_CHAT_CHUNK_SIZE = 86;
 
 	inline void* base;
 	inline void* chatInfo;
 	inline fnAddMessageToChat AddMessageToChatOriginal;
 
 	bool Initialize();
-	bool AddMessageToChat(const char* message, size_t color = 0x00FF00U);
+	bool AddMessageToChat(const char* message, uint32_t color = 0x00FF00U);
 }

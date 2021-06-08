@@ -16,9 +16,9 @@ bool SAMP::Initialize()
 }
 
 
-bool SAMP::AddMessageToChat(const char* message, size_t color)
+bool SAMP::AddMessageToChat(const char* message, uint32_t color)
 {
-	size_t chunkPtr = 0;
+	uint32_t chunkPtr = 0;
 	while (strlen(message) > SAMP::ADD_TO_CHAT_CHUNK_SIZE + chunkPtr)
 	{
 		SAMP::AddMessageToChatOriginal(chatInfo, 8, message + chunkPtr, nullptr, color, 0);
