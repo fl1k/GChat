@@ -17,7 +17,7 @@ bool SAMP::AddMessageToChat(const char * message, size_t color)
 	Pattern pat(GetCurrentProcess(), reinterpret_cast<HMODULE>(SAMP::base));
 
 	std::ostringstream convColor;
-	convColor << std::hex << color;
+	convColor << std::hex << std::setw(6) << std::setfill('0') << color;
 
 	std::string textMsg = "{" + convColor.str() + "}" + message;
 	const char * cText = textMsg.c_str();
