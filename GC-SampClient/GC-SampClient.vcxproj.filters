@@ -69,5 +69,8 @@
     <ClInclude Include="Hook\Pattern.h">
       <Filter>Hook</Filter>
     </ClInclude>
+    <ClInclude Include="Hook\Memory.h">
+      <Filter>Hook</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -34,6 +34,7 @@
     <ClInclude Include="Config\simpleini.h" />
     <ClInclude Include="Hooks\Hooks.h" />
     <ClInclude Include="Hook\Hook.h" />
+    <ClInclude Include="Hook\Memory.h" />
     <ClInclude Include="Hook\Pattern.h" />
     <ClInclude Include="Misc\debug.h" />
     <ClInclude Include="SDK\SAMP.h" />
