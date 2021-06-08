@@ -8,7 +8,7 @@
 bool SAMP::Initialize()
 {
 	SAMP::base = GetModuleHandleA("samp.dll");
-	return true;
+	return !!SAMP::base;
 }
 
 
