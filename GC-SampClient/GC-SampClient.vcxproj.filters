@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Hook\Hook.cpp">
-      <Filter>Hook</Filter>
-    </ClCompile>
     <ClCompile Include="Hooks\Hooks.cpp">
       <Filter>Hooks</Filter>
     </ClCompile>
@@ -20,14 +17,14 @@
     <ClCompile Include="Config\Config.cpp">
       <Filter>Config</Filter>
     </ClCompile>
-    <ClCompile Include="Hook\Pattern.cpp">
-      <Filter>Hook</Filter>
+    <ClCompile Include="Memory\Hook.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\Pattern.cpp">
+      <Filter>Memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Hook">
-      <UniqueIdentifier>{97f03ef8-c413-4765-909f-2273976b5fc9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Hooks">
       <UniqueIdentifier>{1a530d2d-a26a-437d-985e-f7bf1701b8cb}</UniqueIdentifier>
     </Filter>
@@ -43,11 +40,11 @@
     <Filter Include="Config">
       <UniqueIdentifier>{666df548-1434-4637-a8ff-28848c76075a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{fbe504de-21e5-4d9f-916c-dd5e811a8f4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Hook\Hook.h">
-      <Filter>Hook</Filter>
-    </ClInclude>
     <ClInclude Include="Hooks\Hooks.h">
       <Filter>Hooks</Filter>
     </ClInclude>
@@ -66,11 +63,17 @@
     <ClInclude Include="Config\Config.h">
       <Filter>Config</Filter>
     </ClInclude>
-    <ClInclude Include="Hook\Pattern.h">
-      <Filter>Hook</Filter>
+    <ClInclude Include="Misc\Colors.h">
+      <Filter>Misc</Filter>
     </ClInclude>
-    <ClInclude Include="Hook\Memory.h">
-      <Filter>Hook</Filter>
+    <ClInclude Include="Memory\Hook.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\Memory.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\Pattern.h">
+      <Filter>Memory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

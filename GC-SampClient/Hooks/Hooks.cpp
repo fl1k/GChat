@@ -1,8 +1,8 @@
 #include "Hooks.h"
-#include "../Hook/Pattern.h"
+#include "Memory/Pattern.h"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-#include "../SDK/SAMP.h"
+#include "SDK/SAMP.h"
 #include <iostream>
 
 bool Hooks::Initialize()

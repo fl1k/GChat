@@ -4,8 +4,8 @@
 #include <Windows.h>
 #include <iomanip>
 #include <sstream>
-#include "../Hook/Pattern.h"
-#include "../Hook/Memory.h"
+#include "Memory/Pattern.h"
+#include "Memory/Memory.h"
 
 #define CHECK_OFFSET(X, RET, TYPE) \
 	if (auto val = Memory::readMemory<TYPE>(X)) { if (*val == 0) return RET; } else return RET;
@@ -18,7 +18,7 @@ bool SAMP::Initialize()
 
 bool SAMP::AddMessageToChat(const char * message, size_t color)
 {
-	Pattern pat(GetCurrentProcess(), reinterpret_cast<HMODULE>(SAMP::base));
+	static Pattern pat(GetCurrentProcess(), reinterpret_cast<HMODULE>(SAMP::base));
 
 	std::ostringstream convColor;
 	convColor << std::hex << std::setw(6) << std::setfill('0') << color;
@@ -26,7 +26,7 @@ bool SAMP::AddMessageToChat(const char * message, size_t color)
 	std::string textMsg = "{" + convColor.str() + "}" + message;
 	const char * cText = textMsg.c_str();
 
-	auto ACMAddr = pat.Find(
+	static auto ACMAddr = pat.Find(
 		(char *)"\x8B\x15\x00\x00\x00\x00\x68\x00\x00\x00\x00\x52\xE8\x00\x00\x00\x00\x83\xC4\x08\x5F\x5E",
 		(char *)"xx????x????xx????xxxxx"
 	);

@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
-#include "../Hook/Hook.h"
-#include "../Client/Client.h"
+#include "Memory/Hook.h"
+#include "Client/Client.h"
 
 namespace Hooks
 {

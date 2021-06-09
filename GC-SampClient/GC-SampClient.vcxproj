@@ -23,9 +23,9 @@
     <ClCompile Include="Config\Config.cpp" />
     <ClCompile Include="Hooks\Hooks.cpp" />
     <ClCompile Include="Hooks\SendMessage_Hooked.cpp" />
-    <ClCompile Include="Hook\Hook.cpp" />
-    <ClCompile Include="Hook\Pattern.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Memory\Hook.cpp" />
+    <ClCompile Include="Memory\Pattern.cpp" />
     <ClCompile Include="SDK\SAMP.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -33,9 +33,10 @@
     <ClInclude Include="Config\Config.h" />
     <ClInclude Include="Config\simpleini.h" />
     <ClInclude Include="Hooks\Hooks.h" />
-    <ClInclude Include="Hook\Hook.h" />
-    <ClInclude Include="Hook\Memory.h" />
-    <ClInclude Include="Hook\Pattern.h" />
+    <ClInclude Include="Memory\Hook.h" />
+    <ClInclude Include="Memory\Memory.h" />
+    <ClInclude Include="Memory\Pattern.h" />
+    <ClInclude Include="Misc\Colors.h" />
     <ClInclude Include="Misc\debug.h" />
     <ClInclude Include="SDK\SAMP.h" />
   </ItemGroup>
@@ -74,13 +75,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)</IncludePath>
+    <IncludePath>$(ProjectDir);$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)</IncludePath>
     <LibraryPath>$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(Outdir)</LibraryPath>
     <TargetExt>.asi</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)</IncludePath>
+    <IncludePath>$(ProjectDir);$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)</IncludePath>
     <LibraryPath>$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(OutDir)</LibraryPath>
     <TargetExt>.asi</TargetExt>
   </PropertyGroup>

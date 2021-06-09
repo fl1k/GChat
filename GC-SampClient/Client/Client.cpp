@@ -2,8 +2,8 @@
 #include <GC/Packets/RequestPacket.h>
 #include <GC/Packets/ChatMessagePacket.h>
 #include <GC/Packets/ServerUpdatePacket.h>
-#include "../SDK/SAMP.h"
-#include "../Misc/debug.h"
+#include "SDK/SAMP.h"
+#include "Misc/debug.h"
 
 
 bool Client::Initialize(GNet::IPEndpoint ipEndpoint)

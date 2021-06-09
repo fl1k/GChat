@@ -8,36 +8,27 @@
 #include "Client/Client.h"
 #include "Config/Config.h"
 #include "Misc/debug.h"
+#include "Misc/Colors.h"
 
 void Entry(HMODULE hModule)
 {
-#ifdef DEBUG_MODE
-	ALLOC_CONSOLE();
-
-	// check for game initialization first
-	while (!*reinterpret_cast<int *>(0xB6F5F0)) Sleep(50);
-
-#endif	
-	if (Config::Load("gc_config.ini") == false)
-	{
-#ifdef DEBUG_MODE
-		OUTPUT_ERROR("Failed loading config.ini, check your GTA folder.", 0xC00000);
-		system("pause");
-		FREE_CONSOLE();
-#endif
-		SAMP::AddMessageToChat("[ERROR] Failed loading config.ini, check your GTA folder.", 0xC00000);
-		FreeLibraryAndExitThread(hModule, 0);
-		return;
-	}
+	while (!*reinterpret_cast<int*>(0xB6F5F0)) Sleep(50); // GTASA Initialization check
 
 	while (SAMP::Initialize() != true)
 	{
 		Sleep(100);
 	}
 
+	if (Config::Load("gc_config.ini") == false)
+	{
+		SAMP::AddMessageToChat("[ERROR] Failed loading config.ini, check your GTA folder.", StatusColor::ERROR);
+		FreeLibraryAndExitThread(hModule, 0);
+		return;
+	}
+
 	if (GNet::Network::Initialize() == false)
 	{
-		SAMP::AddMessageToChat("[ERROR] GNet failed initializing.", 0xC00000);
+		SAMP::AddMessageToChat("[ERROR] GNet failed initializing.", StatusColor::ERROR);
 		GNet::Network::Shutdown();
 		FreeLibraryAndExitThread(hModule, 0);
 		return;
@@ -45,18 +36,13 @@ void Entry(HMODULE hModule)
 
 	if (Hooks::Initialize() == false)
 	{
-#ifdef DEBUG_MODE
-		OUTPUT_ERROR("Failed placing hooks");
-		system("pause");
-		FREE_CONSOLE();
-#endif
-		SAMP::AddMessageToChat("[ERROR] GChat failed placing hooks.", 0xC00000);
+		SAMP::AddMessageToChat("[ERROR] GChat failed placing hooks.", StatusColor::ERROR);
 		GNet::Network::Shutdown();
 		FreeLibraryAndExitThread(hModule, 0);
 		return;
 	}
 
-	SAMP::AddMessageToChat("GChat initialized.", 0x00FF00);
+	SAMP::AddMessageToChat("GChat initialized.", StatusColor::SUCCESS);
 
 	GNet::IPAddress ipAddress;
 	if (Config::useHostName == true)
@@ -73,27 +59,7 @@ void Entry(HMODULE hModule)
 			std::string loginRequest = "/login " + Config::username + " " + Config::password;
 			Client::Send(loginRequest.c_str());
 		}
-		while (true)
-		{
-			if (GetAsyncKeyState(VK_END))
-				break;
-			Sleep(150);
-		}
 	}
-
-	if (Client::connected == true)
-		Client::Send("/logout");
-
-	Sleep(1000);
-	SAMP::AddMessageToChat("GChat shut down.");
-	Client::Shutdown();
-	Hooks::Shutdown();
-	GNet::Network::Shutdown();
-
-#ifdef DEBUG_MODE
-	FREE_CONSOLE();
-#endif
-	FreeLibraryAndExitThread(hModule, 0);
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
