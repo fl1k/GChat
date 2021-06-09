@@ -20,6 +20,9 @@
     <ClCompile Include="Config\Config.cpp">
       <Filter>Config</Filter>
     </ClCompile>
+    <ClCompile Include="Hook\Pattern.cpp">
+      <Filter>Hook</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Hook">
@@ -62,6 +65,12 @@
     </ClInclude>
     <ClInclude Include="Config\Config.h">
       <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Hook\Pattern.h">
+      <Filter>Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="Hook\Memory.h">
+      <Filter>Hook</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
