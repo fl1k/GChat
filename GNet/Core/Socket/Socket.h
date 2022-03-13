@@ -9,6 +9,7 @@ namespace GNet
 #else
 #define GetLastError errno
 #endif
+
 	class Socket
 	{
 	protected:
