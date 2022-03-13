@@ -6,7 +6,8 @@ bool Client::IsValidUsername(const std::string& username)
 		return false;
 
 	for (size_t i = 0; i < username.length(); i++)
-		if (!((username[i] >= 'a' && username[i] <= 'z') || (username[i] >= 'A' && username[i] <= 'Z') || (username[i] >= '0' && username[i] <= '9')))
+		if (!((username[i] >= 'a' && username[i] <= 'z') || (username[i] >= 'A' && username[i] <= 'Z') || (username[i] >= '0' && username[i] <= '9') 
+			|| username[i] == '_'))
 			return false;
 
 	return true;
