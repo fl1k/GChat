@@ -136,7 +136,11 @@
     - Comments are set at the time that the file, section or key is first
       created. The only way to modify a comment on a section or a key is to
       delete that entry and recreate it with the new comment. There is no
-      way to change the file comment.
+      way to change the file commfind_package(SQLite3 REQUIRED) # Finds the SQLite3 library
+
+# Link SQLite3 with your target (e.g., GC-Server executable)
+target_link_libraries(GC-Server PRIVATE SQLite::SQLite3)
+ent.
 
     @section save SAVE ORDER
 

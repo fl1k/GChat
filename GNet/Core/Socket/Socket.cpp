@@ -1,5 +1,6 @@
 #include "Socket.h"
 
+
 namespace GNet
 {
 	Socket::Socket() :
@@ -20,7 +21,7 @@ namespace GNet
 #define close closesocket
 #endif
 		if (close(this->handle) != 0)
-			throw SocketException("GNet::Socket::Close - Failed closing socket. Error: " + std::to_string(GetLastError()));
+			throw SocketException("GNet::Socket::Close - Failed closing socket. Error: " + (GetLastError()));
 	}
 
 	uint32_t Socket::GetHandle() const

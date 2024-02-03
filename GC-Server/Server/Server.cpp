@@ -1,11 +1,5 @@
 #include "Server.h"
-#include "Command/Command.h"
-#include <GNet/Core/Packet/Packet.h>
-#include <GC/Packets/RequestPacket.h>
-#include <GC/Packets/ServerUpdatePacket.h>
-#include <GC/Packets/ChatMessagePacket.h>
-#include <GC/Packets/PacketType.h>
-#include "../Misc/Logger.h"
+
 
 bool Server::ProcessPacket(size_t clientIndex, std::shared_ptr<GNet::Packet> packet)
 {
@@ -413,8 +407,10 @@ bool Server::ProcessPacket(size_t clientIndex, std::shared_ptr<GNet::Packet> pac
 
 void Server::TryAcceptNewConnection()
 {
-	if (this->masterFds[0].revents & POLLRDNORM)
+
+	if (this->masterFds[0].revents & POLLIN)
 	{
+
 		try
 		{
 			GNet::IPEndpoint clientIPEndpoint;
@@ -423,7 +419,7 @@ void Server::TryAcceptNewConnection()
 			Client& client = this->clients.emplace_back(Client(clientSocket, clientIPEndpoint));
 			pollfd newConnectionFD = {};
 			newConnectionFD.fd = clientSocket.GetHandle();
-			newConnectionFD.events = POLLRDNORM;
+			newConnectionFD.events = POLLIN;
 			newConnectionFD.revents = 0;
 			this->masterFds.push_back(newConnectionFD);
 			Logger::Write(client.ToString() + " connected.", Logger::Reason::Info);
@@ -617,17 +613,21 @@ bool Server::Initialize()
 
 bool Server::Present()
 {
+#ifdef _WIN32
 	SetWindowTextA(GetConsoleWindow(), std::string("GC-Server (" + std::to_string(this->clients.size()) + "/" + std::to_string(this->maxClients) + ")").c_str());
+#endif
 	for (size_t i = 0; i < this->clients.size(); i++)
 		if (this->clients[i].outgoing.HasPendingPackets())
-			this->masterFds[i + 1].events = POLLRDNORM | POLLWRNORM;
+			this->masterFds[i + 1].events = POLLIN | POLLOUT;
 
 	if (poll(this->masterFds.data(), this->masterFds.size(), 1) > 0)
 	{
+
 		this->TryAcceptNewConnection();
 
 		for (size_t i = this->masterFds.size() - 1; i >= 1; i--)
 		{
+
 			size_t clientIndex = i - 1;
 			Client& client = this->clients[clientIndex];
 
@@ -649,8 +649,9 @@ bool Server::Present()
 				continue;
 			}
 
-			if (this->masterFds[i].revents & POLLRDNORM)
+			if (this->masterFds[i].revents & POLLIN)
 			{
+
 				int32_t bytesReceived = 0;
 				if (client.incoming.currentTask == GNet::PacketHandlerTask::ProcessSize)
 					bytesReceived = recv(this->masterFds[i].fd, reinterpret_cast<char*>(&client.incoming.currentPacketSize) + client.incoming.currentPacketOffset, sizeof(uint16_t) - client.incoming.currentPacketOffset, 0);
@@ -665,7 +666,7 @@ bool Server::Present()
 
 				if (bytesReceived < 0)
 				{
-					if (GetLastError() != WSAEWOULDBLOCK)
+					if (GetLastError() != EAGAIN)
 					{
 						this->CloseConnection(clientIndex, DisconnectReason::Timeout);
 						continue;
@@ -706,7 +707,7 @@ bool Server::Present()
 				continue;
 			}
 
-			if (this->masterFds[i].revents & POLLWRNORM)
+			if (this->masterFds[i].revents & POLLOUT)
 			{
 				while (client.outgoing.HasPendingPackets())
 				{
@@ -745,7 +746,7 @@ bool Server::Present()
 				}
 				if (!client.outgoing.HasPendingPackets())
 				{
-					this->masterFds[i].events = POLLRDNORM;
+					this->masterFds[i].events = POLLIN;
 				}
 			}
 		}

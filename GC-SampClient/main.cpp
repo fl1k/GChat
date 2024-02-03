@@ -19,7 +19,7 @@ void Entry(HMODULE hModule)
 		Sleep(100);
 	}
 
-	if (Config::Load("gc_config.ini") == false)
+	if (Config::Load("config.ini") == false)
 	{
 		SAMP::AddMessageToChat("[ERROR] Failed loading config.ini, check your GTA folder.", StatusColor::ERROR);
 		FreeLibraryAndExitThread(hModule, 0);

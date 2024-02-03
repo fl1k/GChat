@@ -3,6 +3,21 @@
 #include "DisconnectReason.h"
 #include "Database/Database.h"
 
+#include "Command/Command.h"
+#include <GNet/Core/Packet/Packet.h>
+#include <GC/Packets/RequestPacket.h>
+#include <GC/Packets/ServerUpdatePacket.h>
+#include <GC/Packets/ChatMessagePacket.h>
+#include <GC/Packets/PacketType.h>
+#include "../Misc/Logger.h"
+
+#include <poll.h>
+#include <unistd.h>
+#include <algorithm>
+#include <cctype>
+#include <string>
+
+
 #ifdef _WIN32
 typedef WSAPOLLFD pollfd;
 #define poll WSAPoll

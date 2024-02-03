@@ -1,5 +1,4 @@
 #include "TCPSocket.h"
-#include <iostream>
 
 namespace GNet
 {
@@ -20,14 +19,14 @@ namespace GNet
 		{
 			this->handle = socket(AF_INET, SOCK_STREAM, protocol);
 			if (this->handle == SOCKET_ERROR)
-				throw SocketException("GNet::TCPSocket::TCPSocket - socket() failed" + GetSocketError());
+				throw SocketException("GNet::TCPSocket::TCPSocket - socket() failed" + std::string(GetSocketError()));
 
 		}
 		else if (this->ipVersion == IPVersion::IPv6)
 		{
 			this->handle = socket(AF_INET6, SOCK_STREAM, protocol);
 			if (this->handle == SOCKET_ERROR)
-				throw SocketException("GNet::TCPSocket::TCPSocket - socket() failed" + GetSocketError());
+				throw SocketException("GNet::TCPSocket::TCPSocket - socket() failed" + std::string(GetSocketError()));
 		}
 		else
 			throw SocketException("GNet::TCPSocket::TCPSocket - Invalid IPEndpoint");
@@ -41,7 +40,7 @@ namespace GNet
 		if (this->ipVersion != ipEndpoint.GetVersion())
 			throw SocketException("GNet::TCPSocket::Connect - Provided ipEndpoint that doesn't match sockets IPVersion.");
 		if (connect(this->handle, ipEndpoint.GetSockAddr(), ipEndpoint.GetSockAddrLength()) != 0)
-			throw SocketException("GNet::TCPSocket::Connect - Failed connecting. Error: " + std::to_string(GetSocketError()));
+			throw SocketException("GNet::TCPSocket::Connect - Failed connecting. Error: " + std::string(GetSocketError()));
 	}
 
 	void TCPSocket::Bind(const IPEndpoint& ipEndpoint)
@@ -49,7 +48,7 @@ namespace GNet
 		if (this->ipVersion != ipEndpoint.GetVersion())
 			throw SocketException("GNet::TCPSocket::Bind - Provided ipEndpoint that doesn't match sockets IPVersion.");
 		if (bind(this->handle, ipEndpoint.GetSockAddr(), ipEndpoint.GetSockAddrLength()) != 0)
-			throw SocketException("GNet::TCPSocket::Bind - Failed binding the IPEndPoint. Error: " + std::to_string(GetSocketError()));
+			throw SocketException("GNet::TCPSocket::Bind - Failed binding the IPEndPoint. Error: " + std::string(GetSocketError()));
 	}
 
 	void TCPSocket::Listen(const IPEndpoint& ipEndpoint, int32_t backLog)
@@ -57,7 +56,7 @@ namespace GNet
 		if (this->ipVersion != ipEndpoint.GetVersion())
 			throw SocketException("GNet::TCPSocket::Connect - Provided ipEndpoint that doesn't match sockets IPVersion.");
 		if (listen(this->handle, backLog) == SOCKET_ERROR)
-			throw SocketException("GNet::TCPSocket::Listen - Failed listening on socket. Error: " + std::to_string(GetSocketError()));
+			throw SocketException("GNet::TCPSocket::Listen - Failed listening on socket. Error: " + std::string(GetSocketError()));
 	}
 
 	TCPSocket TCPSocket::Accept()
@@ -75,14 +74,14 @@ namespace GNet
 		{
 			sockaddr_in addr;
 			int32_t structSize = sizeof(sockaddr_in);
-			acceptedHandle = accept(this->handle, reinterpret_cast<sockaddr*>(&addr), &structSize);
+			acceptedHandle = accept(this->handle, reinterpret_cast<sockaddr*>(&addr), (socklen_t*)&structSize);
 			ipEndpoint = IPEndpoint(*reinterpret_cast<sockaddr*>(&addr));
 		}
 		if (this->ipVersion == IPVersion::IPv6)
 		{
 			sockaddr_in6 addr;
 			int32_t structSize = sizeof(sockaddr_in6);
-			acceptedHandle = accept(this->handle, reinterpret_cast<sockaddr*>(&addr), &structSize);
+			acceptedHandle = accept(this->handle, reinterpret_cast<sockaddr*>(&addr), (socklen_t*)&structSize);
 			ipEndpoint = IPEndpoint(*reinterpret_cast<sockaddr*>(&addr));
 		}
 		if (this->handle != INVALID_SOCKET)
@@ -93,7 +92,7 @@ namespace GNet
 	void TCPSocket::Send(const void* buffer, size_t bufferSize, int32_t& bytesSent, int32_t flags)
 	{
 		if ((bytesSent = send(this->handle, reinterpret_cast<const char*>(buffer), bufferSize, flags)) == SOCKET_ERROR)
-			throw SocketException("GNet::TCPSocket::Send - Failed sending on socket. Error: " + std::to_string(GetSocketError()));
+			throw SocketException("GNet::TCPSocket::Send - Failed sending on socket. Error: " + std::string(GetSocketError()));
 	}
 
 	void TCPSocket::SendAll(const void* buffer, size_t bufferSize, int32_t flags)
@@ -112,7 +111,7 @@ namespace GNet
 	void TCPSocket::Receive(void* buffer, size_t bufferSize, int32_t& bytesRecieved, int32_t flags)
 	{
 		if ((bytesRecieved = recv(this->handle, reinterpret_cast<char*>(buffer), bufferSize, flags)) == SOCKET_ERROR)
-			throw SocketException("GNet::TCPSocket::Receive - Failed receiving on socket. Error: " + std::to_string(GetSocketError()));
+			throw SocketException("GNet::TCPSocket::Receive - Failed receiving on socket. Error: " + std::string(GetSocketError()));
 	}
 
 	void TCPSocket::ReceiveAll(void* buffer, size_t bufferSize, int32_t flags)

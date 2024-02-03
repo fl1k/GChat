@@ -1,13 +1,25 @@
 #include "Logger.h"
 #include <string.h>
 
+#ifdef _WIN32
+#else
+#include <time.h>
+#include <stdio.h>
+#define localtime_s localtime_r
+#define sprintf_s snprintf
+
+#endif
 namespace Logger
 {
 	void Write(std::string message, Reason reason)
 	{
 		time_t t = time(NULL);
 		tm time;
+#ifdef _WIN32
 		localtime_s(&time, &t);
+#else
+		localtime_s(&t, &time);
+#endif
 		std::string log;
 		log.resize(21);
 

@@ -2,12 +2,26 @@
 #include "../IPEndpoint/IPEndpoint.h"
 #include "SocketException.h"
 
+
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#else
+#define INVALID_SOCKET -1
+#include <sys/ioctl.h>
+#include <netinet/tcp.h>
+#include <unistd.h>
+#include <errno.h>
+
+#endif
+
 namespace GNet
 {
 #ifdef _WIN32
 #define GetSocketError WSAGetLastError
+#define EAGAIN WSAEWOULDBLOCK
 #else
-#define GetLastError errno
+#define GetSocketError() strerror(errno)
+#define GetLastError() errno
 #endif
 
 	class Socket

@@ -8,7 +8,9 @@
 #include <WinSock2.h>
 #include <ws2ipdef.h>
 #else
-
+#include <netdb.h>
+#include <string.h>
+#include <sys/socket.h>
 #endif
 
 namespace GNet

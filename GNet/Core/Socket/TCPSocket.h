@@ -1,6 +1,17 @@
 #pragma once
 #include "Socket.h"
 #include "../Packet/Packet.h"
+#include <iostream>
+
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#else
+#define SOCKET_ERROR -1
+#include <errno.h>
+#include <sys/types.h>
+#include <string.h> // For strerror()
+#include <sys/socket.h> // Contains functions and definitions for socket operations
+#endif
 
 namespace GNet
 {

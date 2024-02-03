@@ -11,6 +11,10 @@
 #define OUTPUT_ERR(x) std::cout<< "[ERROR] " << x << "\n"
 #define DEBUG(x) std::cout<< "[DEBUG] " << x << "\n"
 
+#ifdef _WIN32
+#else
+#define Sleep usleep
+#endif
 std::unique_ptr<GNet::TCPSocket> tcpSocket;
 
 void ReceiveThread()
@@ -38,13 +42,14 @@ void ReceiveThread()
 			}
 		}
 		catch (GNet::SocketException exception) { OUTPUT_ERR(exception.what()); return; }
+
 		Sleep(100);
 	}
 }
 
 int main()
 {
-	if (Config::Load("gc_config.ini") != true)
+	if (Config::Load("config.ini") != true)
 	{
 		OUTPUT_ERR("Failed loading config.ini, check your folder.");
 		system("pause");
@@ -76,7 +81,6 @@ int main()
 	RequestPacket requestPacket(loginRequest);
 	try { tcpSocket->Send(requestPacket.GeneratePacket()); }
 	catch (GNet::SocketException exception) { OUTPUT_ERR(exception.what()); }
-
 	std::thread t(ReceiveThread);
 	t.detach();
 	while (true)

@@ -1,5 +1,5 @@
 #pragma once
-#include "GNet/Core/Packet/Packet.h"
+#include <GNet/Core/Packet/Packet.h>
 #include "PacketType.h"
 #include <string>
 
